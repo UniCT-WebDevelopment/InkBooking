@@ -1,0 +1,581 @@
+/* Aggiungi il font personalizzato */
+@font-face {
+    font-family: 'MetalMania';
+    src: url('font/MetalMania-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* Base CSS */
+body {
+    font-family: 'MetalMania', Arial, sans-serif; /* Applicazione del font personalizzato */
+    background-color: #272525; /* Sfondo grigio scuro per tutta la pagina */
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    color: #ffffff; /* Colore del testo per tutto il body */
+}
+
+#app {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    height: 100vh; /* Imposta l'altezza del contenitore a 100% della viewport */
+    width: 100%; /* Assicura che il contenitore prenda tutta la larghezza */
+    padding: 10px;
+    box-sizing: border-box;
+    overflow: hidden; /* Nasconde la scrollbar verticale nel contenitore */
+}
+
+
+
+/* Titolo di benvenuto */
+.welcome-title {
+    font-size: 64px; /* Dimensione del testo aumentata */
+    font-weight: bold; /* Grassetto */
+    color: #f7f3f3; /* Colore del testo bianco molto chiaro */
+    margin-bottom: 20px; /* Riduci lo spazio sotto il titolo */
+    margin-top: 0; /* Rimuovi eventuale margine superiore */
+    text-align: center; /* Centratura del testo */
+    width: 100%;
+    padding: 0 20px; /* Spaziatura orizzontale maggiore per la centratura */
+    letter-spacing: 4px; /* Aumenta lo spazio tra le lettere */
+    line-height: 1.2; /* Aumenta l'interlinea */
+    text-shadow: 2px 2px 4px #000000; /* Contorno nero */
+}
+
+
+/* Sezioni di Registrazione e Login */
+#registerContainer,
+#loginContainer {
+    width: 90%;
+    max-width: 400px;
+    padding: 20px;
+    background-color: #000000; /* Sfondo nero per le sezioni di registrazione e login */
+    color: #ffffff; /* Testo bianco per le sezioni di registrazione e login */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+}
+
+form {
+    margin-bottom: 20px;
+}
+
+input, select, button {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    box-sizing: border-box;
+    color: #ffffff; /* Testo bianco per input, select e button */
+    background-color: #333333; /* Sfondo grigio scuro per input e select */
+    border: 1px solid #444444; /* Bordi scuri per input e select */
+}
+
+input::placeholder, select {
+    color: #cccccc; /* Colore del placeholder per input */
+}
+
+button {
+    background-color: #007BFF; /* Colore blu per i pulsanti */
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+button:hover {
+    background-color: #0056b3; /* Colore blu scuro al passaggio del mouse */
+    transform: scale(1.05);
+}
+
+/* Sezione Chat */
+#chat {
+    margin-top: 20px;
+    width: 90%;
+    max-width: 400px;
+    background-color: #333333; /* Sfondo grigio scuro per la chat */
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    box-sizing: border-box;
+    color: #ffffff; /* Colore del testo nella chat */
+}
+
+#messages {
+    max-height: 200px;
+    overflow-y: auto;
+    border: 1px solid #444444;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #282828; /* Sfondo più scuro per i messaggi */
+    color: #ffffff; /* Colore del testo nei messaggi */
+}
+
+#messageInput {
+    width: 70%;
+    color: #ffffff; /* Colore del testo per input del messaggio */
+    background-color: #333333; /* Sfondo scuro per input del messaggio */
+}
+
+#sendButton {
+    width: 25%;
+    margin-left: 5%;
+}
+
+/* Dashboard e Layout */
+.dashboard {
+    display: flex;
+    height: 100vh;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.sidebar {
+    width: 20%;
+    background-color: #272525; /* Sfondo scuro per la sidebar */
+    padding: 20px;
+    border-right: 1px solid #444444; /* Bordi scuri per la sidebar */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+    color: #ffffff; /* Colore del testo nella sidebar */
+}
+
+.sidebar button {
+    width: 100%;
+    margin: 10px 0;
+    padding: 10px;
+    background-color: #007BFF; /* Colore blu per i pulsanti della sidebar */
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.sidebar button:hover {
+    background-color: #0056b3; /* Colore blu scuro al passaggio del mouse */
+    transform: scale(1.05);
+}
+
+.main-content {
+    width: 80%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+/* Pulsante di Logout */
+.logout-button {
+    background-color: #FF4C4C !important; /* Colore rosso per il pulsante di logout */
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.logout-button:hover {
+    background-color: #CC0000 !important; /* Colore rosso scuro al passaggio del mouse */
+    transform: scale(1.05);
+}
+
+/* Form di ricerca location tatuaggi */
+#tattooLocationForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+}
+
+#tattooLocationForm input {
+    width: 80%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #444444;
+    background-color: #333333; /* Sfondo grigio scuro per input */
+    color: #ffffff; /* Testo bianco per input */
+}
+
+#tattooLocationForm button {
+    width: 40%;
+    padding: 10px;
+    background-color: #007BFF; /* Colore blu per il pulsante di ricerca */
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+#tattooLocationForm button:hover {
+    background-color: #0056b3; /* Colore blu scuro al passaggio del mouse */
+    transform: scale(1.05);
+}
+
+/* Mappa */
+#map {
+    height: 400px;
+    width: 100%;
+    border: 1px solid #444444;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+/* Stile base per i marker */
+.leaflet-marker-icon {
+    transition: transform 0.3s ease, border 0.3s ease;
+}
+
+/* Marker selezionato */
+.selected-marker {
+    transform: scale(1.4);
+    z-index: 2000;
+}
+
+/* Menu di prenotazione */
+#bookingMenu {
+    display: block; /* Assicurati che il menu sia visibile per il drag */
+    position: fixed;
+    top: 50px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    padding: 20px;
+    background-color: #272525; /* Sfondo grigio scuro per il menu di prenotazione */
+    color: #ffffff; /* Testo bianco per il menu di prenotazione */
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 400px;
+    z-index: 1000;
+    cursor: move; /* Cambia il cursore per indicare che è draggabile */
+    transition: opacity 0.3s ease, transform 0.3s ease; /* Transizione per il drag */
+}
+
+#bookingMenu.show {
+    opacity: 1;
+}
+
+#bookingMenu.hide {
+    opacity: 0;
+    transform: translateY(-20px);
+}
+
+/* Slot di tempo per le prenotazioni */
+#timeSlots .day {
+    margin-bottom: 30px; /* Spaziatura aumentata tra i giorni */
+}
+
+#timeSlots h3 {
+    margin-bottom: 20px; /* Spaziatura aumentata sotto il titolo */
+    color: #ffffff; /* Colore del testo per i titoli degli slot di tempo */
+}
+
+.time-slot {
+    margin: 10px;
+    padding: 15px 30px; /* Aumento della dimensione degli slot di tempo */
+    background-color: #007bff; /* Colore blu per gli slot di tempo */
+    color: #ffffff; /* Testo bianco per gli slot di tempo */
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.time-slot:hover {
+    background-color: #0056b3; /* Colore blu scuro al passaggio del mouse */
+    transform: scale(1.05);
+}
+
+/* Pulsanti di prenotazione e chat */
+.book-button, .chat-button {
+    margin-top: 15px; /* Spaziatura aumentata sopra i pulsanti */
+    padding: 15px; /* Aumento della dimensione dei pulsanti */
+    background-color: #007bff; /* Colore blu per i pulsanti di prenotazione e chat */
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.book-button:hover, .chat-button:hover {
+    background-color: #0056b3; /* Colore blu scuro al passaggio del mouse */
+    transform: scale(1.05);
+}
+
+#clientDashboard .chat-button, #clientDashboard .book-button,
+#tatuatoreDashboard .chat-button, #tatuatoreDashboard .book-button {
+    width: 80%;
+    margin: 15px 0; /* Spaziatura aumentata sopra e sotto i pulsanti */
+    padding: 15px; /* Aumento della dimensione dei pulsanti */
+    background-color: #007bff; /* Colore blu per i pulsanti nella dashboard */
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+#clientDashboard .chat-button:hover, #clientDashboard .book-button:hover,
+#tatuatoreDashboard .chat-button:hover, #tatuatoreDashboard .book-button:hover {
+    background-color: #0056b3; /* Colore blu scuro al passaggio del mouse */
+    transform: scale(1.05);
+}
+
+/* Aggiungi la scrollbar per gli appuntamenti */
+.appointments-list {
+    width: 100%; /* Occupa tutta la larghezza del contenitore genitore */
+    max-width: 100%; /* Rimuove il limite di larghezza */
+    background-color: rgb(0, 0, 0);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+    overflow-x: auto; /* Permette lo scroll orizzontale se necessario */
+    overflow-y: auto; /* Permette lo scroll verticale se necessario */
+    margin: 0; /* Rimuove il margine */
+    height: 136px; /* Imposta un'altezza fissa per attivare lo scroll verticale */
+    position: relative;
+}
+
+/* Stile per ogni appuntamento nella lista */
+.appointment-item {
+    display: flex;
+    justify-content: space-between; /* Distribuisce gli elementi con spazio tra di loro */
+    align-items: center;
+    padding: 15px 20px;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 15px;
+    background-color: #1f1d1d;
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+
+.delete-button {
+    width: 40px;
+    height: 40px;
+    background-color: red;
+    color: white;
+    padding: 0;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    line-height: 40px;
+    font-size: 20px;
+    font-weight: bold;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.delete-button:hover {
+    background-color: #CC0000; /* Colore rosso scuro al passaggio del mouse */
+    transform: scale(1.05);
+}
+
+/* Dettagli dell'appuntamento, allineati a sinistra */
+.appointment-details {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    justify-content: space-between; /* Spaziatura tra il nome e le informazioni di data/orario */
+}
+
+/* Nome dell'appuntamento */
+.appointment-name {
+    flex: 1;
+    text-align: left; /* Allinea il testo del nome a sinistra */
+    margin-right: 20px; /* Spazio tra il nome e la data/orario */
+}
+
+.appointment-date-time {
+    flex: 1;
+    text-align: right; /* Allinea la data/orario a destra */
+    margin-right: 20px; /* Spazio tra la data/orario e il pulsante X */
+}
+
+.appointments-list::-webkit-scrollbar {
+    width: 12px; /* Larghezza della scrollbar verticale */
+}
+
+.appointments-list::-webkit-scrollbar-thumb {
+    background-color: #666666;
+    border-radius: 5px;
+}
+
+.appointments-list::-webkit-scrollbar-track {
+    background-color: #444444;
+}
+
+/* Mobile: assicurarsi che gli elementi siano facilmente visualizzabili */
+@media (max-width: 768px) {
+    input, select, textarea {
+        font-size: 16px; /* Dimensione del font per evitare lo zoom sui dispositivi mobili */
+    }
+    #registerContainer,
+    #loginContainer {
+        width: 80%; /* Riduci la larghezza al 80% della viewport */
+        max-width: 300px; /* Imposta una larghezza massima più piccola */
+        padding: 15px; /* Riduci il padding interno */
+    }
+
+    input, select, button {
+        padding: 8px; /* Riduci il padding degli input e dei pulsanti */
+        font-size: 14px; /* Riduci la dimensione del testo */
+    }
+
+    .welcome-title {
+        font-size: 28px; /* Riduci la dimensione del titolo per dispositivi mobili */
+    }
+
+    #registerContainer button, 
+    #loginContainer button {
+        padding: 8px 10px; /* Riduci il padding dei pulsanti */
+        font-size: 14px; /* Riduci la dimensione del testo nei pulsanti */
+    }
+
+    form {
+        margin-bottom: 15px; /* Riduci lo spazio sotto i form */
+    }
+
+
+    .appointment-item {
+        width: 100%; /* Imposta l'elemento appuntamento per occupare tutta la larghezza */
+        flex-direction: column;
+        align-items: flex-start;
+        margin-bottom: 5px; /* Riduce ulteriormente la spaziatura tra gli appuntamenti */
+        padding: 10px 15px; /* Riduce il padding interno dell'item */
+        background-color: #1f1d1d; /* Mantiene lo sfondo scuro */
+        border-radius: 5px; /* Riduce leggermente gli angoli arrotondati */
+        box-sizing: border-box;
+    }
+
+    .appointment-details {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .appointment-name,
+    .appointment-date-time,
+    .delete-button {
+        width: 100%;
+        text-align: space-between;
+    }
+
+    .delete-button {
+        align-self: flex-end;
+    }
+
+    #appointments-list {
+        padding: 0 10px;
+        margin-top: 20px; /* Aggiusta questo valore in base a quanto lo vuoi spostare */
+    }
+
+    #chat {
+        max-width: 100%;
+    }
+
+    .sidebar {
+        width: 50px; /* Riduce la larghezza della sidebar per renderla più stretta sui dispositivi mobili */
+        padding: 10px 0; /* Riduce il padding della sidebar */
+    }
+
+    .sidebar button {
+        font-size: 12px; /* Riduce la dimensione del testo dei pulsanti per adattarsi alla sidebar più stretta */
+        padding: 3px; /* Riduce il padding dei pulsanti */
+    }
+
+    .main-content {
+        width: calc(100% - 50px); /* Compensa lo spazio della sidebar per la sezione principale */
+        padding: 20px;
+    }
+
+        .welcome-title {
+        font-size: 24px; /* Riduce la dimensione del titolo su dispositivi mobili */
+        text-align: center; /* Centra il titolo orizzontalmente */
+    }
+        /* Riduci le dimensioni del booking menu su dispositivi mobili */
+        .booking-menu {
+            font-size: 10px; /* Riduce la dimensione del testo nel menu di prenotazione */
+            padding: 5px; /* Riduce il padding del menu di prenotazione */
+            width: 50%; /* Imposta il menu di prenotazione per occupare tutta la larghezza disponibile */
+            box-sizing: border-box;
+        }
+    
+        .booking-menu button {
+            font-size: 6px; /* Riduce la dimensione del testo dei pulsanti nel menu di prenotazione */
+            padding: 3px 5px; /* Riduce il padding interno dei pulsanti */
+        }
+    
+        .booking-menu .menu-item {
+            margin-bottom: 5px; /* Riduce lo spazio tra le voci del menu */
+        }
+        .logout-button {
+            width: 50px;  /* Imposta una larghezza fissa per renderlo un quadrato */
+            height: 50px; /* Imposta un'altezza fissa uguale alla larghezza */
+            padding: 0; /* Rimuovi padding interno per evitare sfasature */
+            display: flex; /* Allinea il contenuto al centro */
+            align-items: center; /* Allinea il testo verticalmente */
+            justify-content: center; /* Allinea il testo orizzontalmente */
+            font-size: 5px; /* Dimensione del testo adatta al pulsante */
+            margin: 0 0 10px 30px; /* Aumenta il margine sinistro per distanziare ulteriormente il pulsante dalla sidebar */
+        }
+        
+}
+
+
+
+/* Dashboard del tatuatore */
+#tatuatoreDashboard {
+    display: none; /* Nasconde la dashboard del tatuatore per impostazione predefinita */
+}
+
+/* Stile logo nella dashboard */
+.dashboard-logo {
+    margin-top: auto; /* Spinge il logo in basso */
+    margin-bottom: 20px; /* Aggiunge un po' di spazio sotto il logo */
+    width: 150px; /* Dimensione del logo */
+    height: auto; /* Mantiene proporzioni */
+}
+
+
+/* Stile per il menu di prenotazione draggabile */
+#bookingMenu {
+    cursor: move; /* Cambia il cursore per indicare che è draggabile */
+    position: fixed; /* Rende il menu fisso nella finestra */
+    top: 50px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    padding: 20px;
+    background-color: #272525; /* Sfondo grigio scuro per il menu di prenotazione */
+    color: #ffffff; /* Testo bianco per il menu di prenotazione */
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 400px;
+    z-index: 1000;
+    /* Aggiunta della transizione per rendere il drag più fluido */
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+#bookingMenu.show {
+    opacity: 1;
+}
+
+#bookingMenu.hide {
+    opacity: 0;
+    transform: translateY(-20px);
+}

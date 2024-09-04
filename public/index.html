@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>InkBooking</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="/manifest.json">
+    <!-- Leaflet.js CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css" />
+    <!-- Leaflet.js JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/interactjs/dist/interact.min.js"></script>
+
+
+</head>
+
+<body>
+    <div id="app">
+        <h1 class="welcome-title">Benvenuto in InkBooking</h1>
+        <div id="registerContainer">
+            <h1>Registrazione</h1>
+            <form id="registerForm">
+                <input type="text" id="name" name="name" placeholder="Nome" required>
+                <input type="text" id="username" name="username" placeholder="Username" required>
+                <input type="password" id="password" name="password" placeholder="Password" required>
+                <select id="accountType" name="accountType">
+                    <option value="Cliente">Cliente</option>
+                    <option value="Tatuatore">Tatuatore</option>
+                </select>
+                <div id="tatuatoreFields" style="display:none; max-height: 200px; overflow-y: auto;">
+                    <input type="text" id="studioName" name="studioName" placeholder="Nome dello Studio">
+                    <input type="text" id="studioAddress" name="studioAddress" placeholder="Indirizzo">
+                    <input type="text" id="studioCity" name="studioCity" placeholder="Città">
+                    <input type="text" id="studioPostalCode" name="studioPostalCode" placeholder="CAP">
+                </div>
+                <button type="submit">Registrati</button>
+            </form>
+            <button id="showLoginForm">Vai al login</button>
+        </div>
+
+        <!-- Sezione Login -->
+        <div id="loginContainer" style="display:none;">
+            <h1>Login</h1>
+            <form id="loginForm">
+                <input type="text" id="loginUsername" name="username" placeholder="Username" required>
+                <input type="password" id="loginPassword" name="password" placeholder="Password" required>
+                <button type="submit">Login</button>
+            </form>
+            <button id="showRegisterForm">Vai alla registrazione</button>
+        </div>
+
+        <!-- Sezione Chat -->
+        <div id="chat" style="display:none;">
+            <h2>Chat</h2>
+            <div id="userList"></div>
+            <input type="hidden" id="receiverId">
+            <div id="messages"></div>
+            <input id="messageInput" placeholder="Scrivi un messaggio">
+            <button id="sendButton">Invia</button>
+        </div>
+
+        <!-- Dashboard Tatuatore -->
+        <div id="tatuatoreDashboard" class="dashboard" style="display:none;">
+            <div class="sidebar">
+                <button id="logoutTatuatore" class="logout-button">Logout</button>
+                <img src="logo_6.png" alt="InkBooking Logo" class="dashboard-logo">
+                <img src="logo.png" alt="InkBooking Logo" class="dashboard-logo"> 
+                <img src="logo_4.png" alt="InkBooking Logo" class="dashboard-logo"> 
+            </div>
+            <div class="main-content">
+                <h1>InkBooking</h1>
+                <div id="tatuatoreBookings" class="dashboard-section">
+                    <h2>Le tue prenotazioni</h2>
+                    <div id="tatuatoreAppointmentsList" class="appointments-list"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dashboard Cliente -->
+        <div id="clientDashboard" class="dashboard" style="display:none;">
+            <div class="sidebar">
+                <button id="logoutClient" class="logout-button">Logout</button>
+                <img src="logo_2.png" alt="InkBooking Logo" class="dashboard-logo">
+                <img src="logo_4.png" alt="InkBooking Logo" class="dashboard-logo"> 
+                <img src="logo_5.png" alt="InkBooking Logo" class="dashboard-logo"> 
+            </div>
+            <div class="main-content">
+                <h1>InkBooking</h1>
+                <div id="tattooLocationForm">
+                    <input type="text" id="tattooLocation" placeholder="Dove ti vuoi tatuare?" required>
+                    <input type="text" id="postalCode" placeholder="CAP" required>
+                    <button id="searchTattooArtists">Cerca</button>
+                </div>
+                <div id="map"></div>
+                <div id="bookingMenu" style="display:none;" class="draggable">
+                    <h2>Prenota un appuntamento</h2>
+                    <form id="bookingForm">
+                        <label for="bookingDate">Data:</label>
+                        <input type="date" id="bookingDate" name="date" required>
+                        <label for="bookingTime">Orario:</label>
+                        <select id="bookingTime" name="time" required></select>
+                        <button type="submit">Prenota</button>
+                    </form>
+                    <button id="closeBookingMenu" class="close-booking-menu">Chiudi</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Nuova sezione per le prenotazioni Tatuatore -->
+        <div id="appointmentsContainer" class="dashboard-section" style="display:none;">
+            <div class="sidebar">
+                <button id="homeButtonAppointments">Home</button>
+                <button id="logoutButtonAppointments" class="logout-button">Logout</button>
+            </div>
+            <div class="main-content">
+                <h2>Le mie prenotazioni</h2>
+                <div class="appointments-list">
+                    <div class="appointment-item">
+                        <div class="appointment-details">
+                            <div class="appointment-name">Nome Appuntamento</div>
+                            <div class="appointment-date-time">Data e Ora</div>
+                        </div>
+                        <button class="delete-button">&times;</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Socket.IO JavaScript -->
+    <script src="/socket.io/socket.io.js"></script>
+    <!-- Script Personalizzati -->
+    <script src="scripts.js"></script>
+    
+    <!-- Registrazione del Service Worker -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register('/service-worker.js').then(function(registration) {
+                    console.log('Service Worker registrato con successo:', registration.scope);
+                }, function(err) {
+                    console.log('Service Worker non registrato:', err);
+                });
+            });
+        }
+    </script>
+</body>
+
+</html>
+
+
